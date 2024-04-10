@@ -28,7 +28,7 @@ router.post('/createuser', [
       return res.status(400).json({success, error: "Sorry a user with this email already exists" })
     }
     const salt = await bcrypt.genSalt(10);
-    const secPass = await await bcrypt.hash(req.body.password, salt);
+    const secPass = await bcrypt.hash(req.body.password, salt);
     // Create a new user
     user = await User.create({
       name: req.body.name,
@@ -47,7 +47,7 @@ router.post('/createuser', [
     res.json({ success,authtoken })
 
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 })
@@ -86,7 +86,7 @@ router.post('/login', [
     success= true;
     res.json({ success,authtoken })
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 });
@@ -99,7 +99,7 @@ router.post('/getuser', fetchuser , async (req, res) => {
     const user = await User.findById(userId).select("-password")
     res.send(user)
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 })

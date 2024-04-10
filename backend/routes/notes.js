@@ -10,7 +10,7 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
     const notes = await Note.find({ user: req.user.id })
     res.json(notes)
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 })
@@ -34,7 +34,7 @@ router.post('/addnote', fetchuser, [
     const savedNote = await note.save()
     res.json(savedNote)
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 })
@@ -67,7 +67,7 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
     note = await Note.findByIdAndUpdate(req.params.id, { $set: newNote }, { new: true })
     res.json({ note });
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send("Intenal Server Error");
   }
 })

@@ -1,8 +1,8 @@
-import notecontext from "../context/notes/noteContext"
+import noteContext from "../context/notes/noteContext"
 import React, { useContext } from 'react'
 
 const Noteitem = (props) => {
-  const context= useContext(notecontext);
+  const context= useContext(noteContext);
   const { deleteNote } = context;
   const { note, updateNote } = props;
   return (
